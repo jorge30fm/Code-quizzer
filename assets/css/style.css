@@ -1,0 +1,21 @@
+* {
+        font-family: Arial, Helvetica, sans-serif;
+}
+header {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+}
+a {
+        text-decoration: none;
+        font-size: x-large;
+        color:violet;
+}
+#landing-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 20%;
+        padding-right: 20%;
+        text-align: center;
+}

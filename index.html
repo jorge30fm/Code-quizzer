@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <title>Code Quizzer</title>
+</head>
+<body>
+        <header>
+                <a href='#' id="high-scores">View High Scores</a>
+                <p>Time: <span id="time-remaining"></span></p>
+        </header>
+        <main>
+                <div id="landing-page" style="display:block">
+                        <h1 id='intro-title' class="question">Coding Quiz Challenge</h1>
+                        <p id="quiz-instructions">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by then secods!</p>
+                        <button onClick="hideContent(event)" type="submit" id="start-button">Start</button>
+                </div>
+        </main>
+
+        <script src="./assets/js/script.js"></script>
+</body>
+</html>
