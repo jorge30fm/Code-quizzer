@@ -1,15 +1,74 @@
+:root {
+        --gradient: linear-gradient(45deg,
+        #000B18,
+        #00172D,
+        #00264D,
+        #02386E,
+        #00498D,
+        #00498D,
+        #02386E,
+        #00264D,
+        #00172D,
+        #000B18
+         )
+}
 * {
         font-family: Arial, Helvetica, sans-serif;
+        color: white;
+}
+body {
+        height: 100%;
+        margin: 0;
+        background-image: var(--gradient);
+        background-size: 5000%;
+        animation: bg-animation 20s infinite alternate;
+}
+#content {
+        transition: opacity 10s;
+        min-height: 700px;
+}
+.correct {
+        background: green;
+}
+.incorrect {
+        background-color: red;
+
+}
+
+@keyframes bg-animation {
+        0% {background-position: left}
+        100% {background-position: right}
 }
 header {
         display: flex;
         justify-content: space-between;
         padding: 20px;
+        align-items: center;
+}
+#start-button, .btn {
+        border: none;
+        display: inline-block;
+        padding: 10px 16px;
+        background-color: #860d2d;
+        font-size: 18px;
+        font-weight: normal;
+        text-align: center;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 10px;
+}
+.btn:hover {
+        background-color: #f00b48;
+}
+#start-button:hover{
+background-color: #f00b48;
 }
 a {
         text-decoration: none;
         font-size: x-large;
-        color:violet;
+        color: #862a0d;
+        font-weight: bold;
+        text-shadow: 1px 1px rgb(160, 118, 118);
 }
 #landing-page {
         display: flex;
@@ -18,4 +77,46 @@ a {
         padding-left: 20%;
         padding-right: 20%;
         text-align: center;
+}
+.questionLocation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+.question{
+        margin: 50px 30px 0px 30px;
+}
+
+.answer-choices {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+}
+.input-content {
+        color: black;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        text-align: center;
+        border-radius: 20px;
+        margin-bottom: 10%;
+}
+#highscore-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+}
+.scorelistItem {
+        font-size: large;
+        list-style-type: none;
+        padding: 10px;
+        margin-bottom: 5px;
+        width: 100%;
+        text-align: center;
+        border-radius: 20px;
+}
+.scorelistItem:hover {
+        background-color: #860d2d;
 }

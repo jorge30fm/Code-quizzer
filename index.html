@@ -8,18 +8,28 @@
         <title>Code Quizzer</title>
 </head>
 <body>
+<main id="content">
         <header>
                 <a href='#' id="high-scores">View High Scores</a>
                 <p>Time: <span id="time-remaining"></span></p>
         </header>
-        <main>
+        <section>
                 <div id="landing-page" style="display:block">
-                        <h1 id='intro-title' class="question">Coding Quiz Challenge</h1>
-                        <p id="quiz-instructions">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by then secods!</p>
-                        <button onClick="hideContent(event)" type="submit" id="start-button">Start</button>
+                        <h1 id='intro-title'>Coding Quiz Challenge</h1>
+                        <p id="quiz-instructions">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by then seconds!</p>
+                        <button type="submit" id="start-button" class='btn'> Start</button>
                 </div>
-        </main>
+                <div class="questionLocation">
+                        <h2 class="question"></h2>
+                        <ol class="answer-choices" type="A">
 
+                        </ol>
+                        <div><ul id="highscore-list"></ul></div>
+                </div>
+        </section>
+</main>
         <script src="./assets/js/script.js"></script>
 </body>
 </html>
+
+<!-- fontawesome.com, get custom icons, make sure to reference in html, -->
