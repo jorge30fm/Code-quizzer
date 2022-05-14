@@ -1,9 +1,10 @@
-:root {
+:root {/*sets gradient color for background*/
         --gradient: linear-gradient(45deg,
         #000B18,
         #00172D,
         #00264D,
         #02386E,
+        #00498D,
         #00498D,
         #00498D,
         #02386E,
@@ -16,6 +17,8 @@
         font-family: Arial, Helvetica, sans-serif;
         color: white;
 }
+
+/*styles background, makes the gradient 5000% larger,and triggers an animation that causes the background to pan across the screen, creating the illusion of colors changing*/
 body {
         height: 100%;
         margin: 0;
@@ -27,14 +30,17 @@ body {
         transition: opacity 10s;
         min-height: 700px;
 }
+/*turns background green when user clicks right answer(javascript)*/
 .correct {
         background: green;
 }
+
+/*turns background red when user clicks right answer(javascript)*/
 .incorrect {
         background-color: red;
-
 }
 
+/*animation for changing color background*/
 @keyframes bg-animation {
         0% {background-position: left}
         100% {background-position: right}
@@ -45,7 +51,7 @@ header {
         padding: 20px;
         align-items: center;
 }
-#start-button, .btn {
+.btn {
         border: none;
         display: inline-block;
         padding: 10px 16px;
@@ -56,28 +62,39 @@ header {
         border-radius: 6px;
         cursor: pointer;
         margin-bottom: 10px;
+        width: 200px;
+        margin-top: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
 }
+
+/*change color of button when hovering*/
 .btn:hover {
         background-color: #f00b48;
 }
-#start-button:hover{
-background-color: #f00b48;
-}
-a {
+
+/*styling for the view high scores title in header, it's actually a button*/
+#high-scores {
         text-decoration: none;
         font-size: x-large;
         color: #862a0d;
         font-weight: bold;
         text-shadow: 1px 1px rgb(160, 118, 118);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
 }
+/*styling for main page*/
 #landing-page {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         padding-left: 20%;
         padding-right: 20%;
         text-align: center;
 }
+
 .questionLocation {
         display: flex;
         flex-direction: column;
@@ -93,6 +110,7 @@ a {
         flex-direction: column;
         align-items: flex-start;
 }
+/*styling for input form to save the user initials*/
 .input-content {
         color: black;
         padding-bottom: 10px;
@@ -100,22 +118,28 @@ a {
         text-align: center;
         border-radius: 20px;
         margin-bottom: 10%;
+        width: 200px
 }
 #highscore-list {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
+        padding-left: 0;
+}
+#highscoreDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 }
 .scorelistItem {
         font-size: large;
         list-style-type: none;
-        padding: 10px;
-        margin-bottom: 5px;
         width: 100%;
         text-align: center;
         border-radius: 20px;
+
 }
 .scorelistItem:hover {
         background-color: #860d2d;

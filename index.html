@@ -9,27 +9,29 @@
 </head>
 <body>
 <main id="content">
-        <header>
-                <a href='#' id="high-scores">View High Scores</a>
+        <header id="header">
+                <button id="high-scores">View High Scores</button>
                 <p>Time: <span id="time-remaining"></span></p>
         </header>
         <section>
+                <!-- Main/starting page with instructions of the quiz -->
                 <div id="landing-page" style="display:block">
                         <h1 id='intro-title'>Coding Quiz Challenge</h1>
                         <p id="quiz-instructions">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by then seconds!</p>
                         <button type="submit" id="start-button" class='btn'> Start</button>
                 </div>
                 <div class="questionLocation">
+                        <!-- placeholder div where all questions/answer options will be added to -->
                         <h2 class="question"></h2>
-                        <ol class="answer-choices" type="A">
+                        <ol class="answer-choices" type="A"></ol>
 
-                        </ol>
-                        <div><ul id="highscore-list"></ul></div>
+                        <!-- placeholder for the higscores list section that will dinamically added -->
+                        <div id="highscoreDiv">
+                                <ul id="highscore-list"></ul>
+                        </div>
                 </div>
         </section>
 </main>
         <script src="./assets/js/script.js"></script>
 </body>
 </html>
-
-<!-- fontawesome.com, get custom icons, make sure to reference in html, -->

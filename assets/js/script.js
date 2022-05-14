@@ -13,20 +13,33 @@ var questionBank = [
                 question: 'Which of the following function of Array object calls a function for each element in the array?',
                 choices: ['concat()', 'every()', 'filter()', 'forEach()'],
                 answerAttribute: ['false', 'false', 'false', 'true']        }
-];
+]; //array of quiz questions to iterate over
+
+//variables select DOM elements from the starting page, adds event listener to the start button
 var landingContent = document.querySelector('#landing-page');
 var startButton = document.getElementById('start-button');
+startButton.addEventListener('click', startQuiz)
+
+//variables store DOM elements that will contain the content of each question, counter created to keep track of the questions
 var questionSectionEl = document.querySelector('.questionLocation');
 var questionPrompt = document.querySelector('.question');
 var answerListEl = document.querySelector('.answer-choices');
 var questionNumber = 0;
-var timeLeft = 10;
+
+//variables containging info about the timer on the header
+var timeLeft = 100;
 var timeStarted = false;
 var timer;
-var highscoreSection = document.getElementById('highscore-list')
-startButton.addEventListener('click', startQuiz)
+var timerEl = document.getElementById('time-remaining');
 
-//hide landing page content when user clicks start quiz button
+//variables containing DOM elements that will contain the high score data, adds event listener to 'View Highscores in the header'
+var highscoreSection = document.getElementById('highscore-list');
+var highscoreDiv = document.getElementById('highscoreDiv');
+var Hstitle = document.getElementById('high-scores');
+Hstitle.addEventListener('click', viewHS);
+
+
+//hides the landing page content when user clicks start quiz button, and displayes the first question
 function startQuiz (event){
         var targetEl = event.target;
         if (targetEl.matches('#start-button')) {
@@ -37,9 +50,8 @@ function startQuiz (event){
         }
         displayQuestion(questionNumber);
 };
-var timerEl = document.getElementById('time-remaining');
 
-//function displays the question on the window
+//checks if the timerStarted variable is set to false, if so, triggers the start timer function, and displays questions and answer choices on window/
 var displayQuestion = function(num){
         if (!timeStarted) {startTimer()};
         questionPrompt.innerHTML = questionBank[num].question;
@@ -57,10 +69,16 @@ var displayQuestion = function(num){
                 }
         answerListEl.addEventListener('click', checkCorrect);
 };
+
+//when this function runs, it sets the time started variable to true and  triggersthe startCountdown function every second
 function startTimer() {
         timeStarted = true;
         timer = setInterval(startCountdown, 1000)
 }
+
+//checks if the time remaining is 0 or greater,if so, displays the timer on page and substract one
+//if the time is less than 11, it makes the font red to alert the user
+//if time runs out, it triggers the function to get the user name , saves the score, stops the timer and deletes anything displayed in the window
 var startCountdown = function(){
         if (timeLeft > -1) {
         timerEl.innerHTML = timeLeft;
@@ -77,12 +95,19 @@ var startCountdown = function(){
         }
         timeLeft -= 1}
 
+
+//deletes the answer choices from the quiz so that they are not displayed in the window anymore
 var clearScreen = function() {
         var answerItems = document.querySelector('.answer-choices');
         while (answerItems.firstChild) {
         answerItems.removeChild(answerItems.firstChild);}
 
 }
+
+//checks if the right answer was picked
+//if the right answer was picked, the background flashes green and goes to the next question
+//if the wrong answer was picked, background flashes red and substract 10 from the time and displayes the next question
+//if there are no other questions, it triggers the getName function
 var checkCorrect = function(event) {
         var pickedAnswer = event.target;
        // var pickedAnswerEl = document.querySelector()
@@ -104,6 +129,7 @@ var checkCorrect = function(event) {
                 colorFlash('incorrect');
                 timeLeft -= 10;
                 clearScreen();
+
                 if (questionNumber < questionBank.length - 1){
                         questionNumber++;
                         displayQuestion(questionNumber);
@@ -115,6 +141,12 @@ var checkCorrect = function(event) {
                 }
         }
 }
+
+//function handles the colorflash if a user picked a correct or incorrect answer
+//changes the class of the background color depending on wether the user chose the right answer or not
+//takes a parameter from the checkcorrect function 'correct' or 'incorrect'
+//depending on the parameter, it sets the class of the main section base don that parameter, triggering CSS properties
+//resets the class after half a second to create the illusion of a flash
 function colorFlash(feedback) {
         var background = document.querySelector('#content');
         background.setAttribute('class', feedback)
@@ -125,22 +157,30 @@ function colorFlash(feedback) {
         500);
         clearInterval(colorFlash);
 }
+
+//dinamically displays the input section to get the user's initials
+//adds an event listener to the submit button, when clicked, saves the name to storage
 var getName = function() {
-        questionPrompt.innerHTML = 'Enter your name';
+        questionPrompt.innerHTML = 'Enter your initials';
         clearScreen();
         var highscoreEl = document.createElement('INPUT');
         highscoreEl.setAttribute('type', 'text');
         highscoreEl.setAttribute('class', 'input-content')
         highscoreEl.setAttribute('id', 'name-value')
-        highscoreEl.setAttribute('placeholder', 'Enter Your Name!');
+        highscoreEl.setAttribute('placeholder', 'Enter Your Initials!');
         highscoreSection.appendChild(highscoreEl);
         var submitName = document.createElement('button');
         submitName.setAttribute('type', 'submit');
-        submitName.setAttribute('id', 'start-button');
+        submitName.setAttribute('class', 'high-scores')
+        submitName.setAttribute('class', 'btn');
         submitName.textContent = 'Submit';
         highscoreSection.appendChild(submitName);
         submitName.addEventListener('click', saveToStorage);
 }
+
+//checks if user enter initials to save
+//if initials were entered, it triggers the save name function, and clears the screen
+//then triggers the function that displays the high scores
 var saveToStorage = function (event){
         event.preventDefault;
         if (document.getElementById('name-value').value.length == 0) {
@@ -153,6 +193,12 @@ var saveToStorage = function (event){
         highscoreSection.removeChild(highscoreSection.firstChild);}
         displayHighscores();}
 }
+
+//checks to see if there is data in local storage, if so, it displays the high score list on the screen, along with a clear and a go back button
+//gives html atributes of  'onlcick,  "function()"' to each of the buttons
+//if uses clicks the 'go back' button, it reloads the page, effectively taking the user to the main page
+//if user clicks the 'clear highscores'button, it deletes the data from local storage and removes the high score list from the window
+//other classes added for styling purposes
 var displayHighscores = function() {
         if(localStorage.getItem('playerNames') != null && localStorage.getItem('time-remaining') != null) {
                 storedNames = JSON.parse(localStorage.getItem('playerNames'));
@@ -163,10 +209,25 @@ var displayHighscores = function() {
                         scoreItems.innerHTML = storedNames[i] + ':   ' + storedScore[i] ;
                         highscoreSection.appendChild(scoreItems);
                 }
+                var goBackBtn = document.createElement('button');
+                goBackBtn.setAttribute('class', 'btn');
+                goBackBtn.setAttribute('id', 'goBack');
+                goBackBtn.setAttribute('onclick', 'location.reload()');
+                goBackBtn.textContent = 'Go Back';
+                highscoreDiv.appendChild(goBackBtn);
 
+
+                var clearHSBtn = document.createElement('button');
+                clearHSBtn.setAttribute('class', 'btn');
+                clearHSBtn.setAttribute('id', 'clearHS');
+                clearHSBtn.textContent = 'Clear High Score';
+                clearHSBtn.setAttribute('onclick', 'clearStorage()');
+                highscoreDiv.appendChild(clearHSBtn);
          }
+
 }
 
+//takes user input and saves it to local storage in an array of names
 function saveName() {
         var newName = document.getElementById('name-value').value;
 
@@ -178,7 +239,12 @@ function saveName() {
         localStorage.setItem('playerNames', JSON.stringify(oldObject));
 }
 
+//stores the time remaining in the timer and adds it to local storage
+//if the time remaining is negative, changes it to 0 before sending it to local storage
 function saveScore() {
+        if (timeLeft < 0) {
+                timeLeft =-1
+        }
         var newScore = timeLeft + 1;
         if(localStorage.getItem('time-remaining') == null) {
                 localStorage.setItem('time-remaining', '[]');
@@ -188,4 +254,32 @@ function saveScore() {
         localStorage.setItem('time-remaining', JSON.stringify(oldScore));
 }
 
+//if user is in the main page, it hides the content and displays the highscores
+//if user is in the middle of answering a questions, it deletes the question list and displays highscores
+//if there are no highscores in storage, it displays an alert and reloads the page so the user can retake the quiz
+function viewHS() {
+        var displaySetting = landingContent.style.display;
+        if (displaySetting === 'block'){
+                landingContent.style.display = 'none';
+                }
+        while (answerListEl.firstChild) {
+                answerListEl.removeChild(answerListEl.firstChild);}
+        if(localStorage.getItem('playerNames') == null && localStorage.getItem('time-remaining') == null) {
+                alert('No scores to see. Pleaste take the quiz.')
+                location.reload()}
+        else {
+                questionPrompt.innerHTML = 'HIGHSCORES';
+                displayHighscores();
+        }
 
+}
+
+//function clears local storage and returns an alert confirmation message, also removes the high score list from the window
+var clearStorage = function(){
+        localStorage.removeItem('playerNames');
+        localStorage.removeItem('time-remaining');
+        while (highscoreSection.firstChild) {
+                highscoreSection.removeChild(highscoreSection.firstChild);}
+        alert('Highscores cleared!')
+
+}
