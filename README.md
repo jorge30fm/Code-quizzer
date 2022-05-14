@@ -30,7 +30,7 @@ Project also employes an animation to give the illusion of changing background c
 ### Website Link
 https://jorge30fm.github.io/Code-quizzer/
 
-### Github Repositpory Link
+### Github Repository Link
 https://github.com/jorge30fm
 
 
