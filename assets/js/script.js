@@ -12,7 +12,28 @@ var questionBank = [
         {
                 question: 'Which of the following function of Array object calls a function for each element in the array?',
                 choices: ['concat()', 'every()', 'filter()', 'forEach()'],
-                answerAttribute: ['false', 'false', 'false', 'true']        }
+                answerAttribute: ['false', 'false', 'false', 'true']
+        },
+        {
+                question: 'The "function" and "var" are known as:',
+                choices: ['keywords', 'data types', 'declaration statements', 'prototypes'],
+                answerAttribute: ['false', 'false', 'true', 'false']
+        },
+        {
+                question:'Which of the following variables takes precedence over the others if the names are the same?',
+                choices: ['global variable', 'the local element', 'the two of the above', 'none of the above'],
+                answerAttribute: ['false', 'true', 'false', 'true']
+        },
+        {
+                question: 'Which of the following type of a variable is volatile?',
+                choices: ['Mutable variable', 'Dynamic variable', 'volatile variable', 'immutable variable'],
+                answerAttribute: ['true', 'false', 'false', 'false']
+        },
+        {
+                question: 'When there is an indefinite or an infinite value during an arithmetic computation in a program, then JavaScript prints:',
+                choices: ['expception error', 'overflow error', 'Infinity', 'the value as such'],
+                answerAttribute: ['false', 'false', 'true', 'false']
+        }
 ]; //array of quiz questions to iterate over
 
 //variables select DOM elements from the starting page, adds event listener to the start button
@@ -167,7 +188,7 @@ var getName = function() {
         highscoreEl.setAttribute('type', 'text');
         highscoreEl.setAttribute('class', 'input-content')
         highscoreEl.setAttribute('id', 'name-value')
-        highscoreEl.setAttribute('placeholder', 'Enter Your Initials!');
+        highscoreEl.setAttribute('placeholder', 'Initials');
         highscoreSection.appendChild(highscoreEl);
         var submitName = document.createElement('button');
         submitName.setAttribute('type', 'submit');

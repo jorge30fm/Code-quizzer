@@ -102,7 +102,8 @@ header {
         justify-content: center;
     }
 .question{
-        margin: 50px 30px 0px 30px;
+        margin: 50px 50px 0px 50px;
+        text-align: center;
 }
 
 .answer-choices {
@@ -132,6 +133,7 @@ header {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
 }
 .scorelistItem {
         font-size: large;
@@ -143,4 +145,74 @@ header {
 }
 .scorelistItem:hover {
         background-color: #860d2d;
+}
+@media screen and (min-width: 768px){
+header {
+        font-size: 30px;
+}
+#high-scores {
+        font-size: 40px;
+}
+#intro-title {
+        font-size: 60px;
+}
+#quiz-instructions {
+        font-size: 25px;
+}
+.btn {
+        font-size: 25px;
+}
+.question {
+        font-size: 30px;
+        padding-left: 0px
+}
+li {
+        font-size: 25px;
+}
+.input-content {
+        font-size: 25px
+}
+.scorelistItem {
+        font-size: 25px;
+}
+#content {
+        min-height: 900px;
+}
+}
+
+@media screen and (min-width: 575px) {
+        header {
+                font-size: 30px;
+        }
+        #high-scores {
+                font-size: 50px;
+        }
+        #intro-title {
+                font-size: 60px;
+        }
+        #quiz-instructions {
+                font-size: 25px;
+        }
+        .btn {
+                font-size: 25px;
+        }
+        .question {
+                font-size: 30px;
+                padding-left: 0px
+        }
+        li {
+                font-size: 25px;
+        }
+        .input-content {
+                font-size: 25px
+        }
+        .scorelistItem {
+                font-size: 25px;
+        }
+        #content {
+                min-height: 1200px;
+        }
+        .btn {
+                width: 270px
+        }
 }
