@@ -184,6 +184,9 @@ function colorFlash(feedback) {
 var getName = function() {
         questionPrompt.innerHTML = 'Enter your initials';
         clearScreen();
+        var feedback= document.createElement('p');
+        feedback.innerHTML = 'Your score is ' + timeLeft + '.';
+        highscoreSection.appendChild(feedback);
         var highscoreEl = document.createElement('INPUT');
         highscoreEl.setAttribute('type', 'text');
         highscoreEl.setAttribute('class', 'input-content')
